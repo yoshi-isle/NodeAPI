@@ -1,5 +1,9 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
+
 const PORT = 8000;
+
+app.use( express.json() );
 
 app.listen(
     PORT,
@@ -14,4 +18,19 @@ app.get('/products', (request, result) =>
             price: 0.23
         }
     )
-});
+})
+
+app.post('/product/:id', (request, result) =>
+{
+    const { id } = request.params;
+    const { item } = request.body;
+
+    if (!item)
+    {
+        result.status(404).send({ message: "No item given "});
+    }
+
+    result.send({
+        item: `test ${item} and ${id}`
+    });
+})
