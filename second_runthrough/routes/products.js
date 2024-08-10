@@ -13,11 +13,23 @@ router.post('/', (req, res, next) => {
     })
 })
 
-router.post('/:productId', (req, res, next) => {
+router.get('/:productId', (req, res, next) => {
     const id = req.params.productId;
 
     res.status(200).json({
-        message: "Handling POST request to /products for " + id
+        message: "Handling POST request to /products for " + id,
+    })
+})
+
+router.patch('/:productId', (req, res, next) => {
+    res.status(200).json({
+        message: "Updated product"
+    })
+})
+
+router.delete('/:productId', (req, res, next) => {
+    res.status(200).json({
+        message: "Deleted product"
     })
 })
 
